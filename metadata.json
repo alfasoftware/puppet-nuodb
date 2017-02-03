@@ -1,0 +1,20 @@
+{
+  "name": "alfasystems-nuodb",
+  "version": "0.1.0",
+  "author": "alfasystems",
+  "summary": "Installs, configures and manages NuoDB service.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/alfasystems/puppet-nuodb",
+  "project_page": "https://github.com/alfasystems/puppet-nuodb",
+  "issues_url": "https://github.com/alfasystems/puppet-nuodb/issues",
+  "dependencies": [
+  	{ "name": "puppetlabs-stdlib", "version_requirement":">= 3.0.0" },
+    { "name": "puppetlabs-java", "version_requirement":">= 1.2.0" },
+    { "name": "alexharvey-disable_transparent_hugepage", "version_requirement":">= 1.2.1" }
+  ],
+  "operatingsystem_support": [
+    { "operatingsystem": "RedHat", "operatingsystemrelease": [ "7" ] },
+    { "operatingsystem": "Ubuntu", "operatingsystemrelease": [ "16.04" ] }
+  ]
+}
+

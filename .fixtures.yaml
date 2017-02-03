@@ -1,0 +1,6 @@
+fixtures:
+  repositories:
+    apt: "git://github.com/puppetlabs/puppetlabs-apt.git"
+    java: "git://github.com/puppetlabs/puppetlabs-java.git"
+    stdlib: "git://github.com/puppetlabs/puppetlabs-stdlib.git"
+    disable_transparent_hugepage: "git://github.com/alexharv074/puppet-disable_transparent_hugepage.git"
