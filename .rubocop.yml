@@ -1,0 +1,10 @@
+AllCops:
+  TargetRubyVersion: 1.9
+Metrics/LineLength:
+  Max: 120
+Metrics/BlockLength:
+  Enabled: False
+Metrics/MethodLength:
+  Enabled: False
+Metrics/ModuleLength:
+  Enabled: False
