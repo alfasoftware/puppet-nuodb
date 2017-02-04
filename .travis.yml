@@ -11,7 +11,7 @@ before_install:
 script: 
   - bundle exec rake validate
   - bundle exec rake lint
-  - bundle exec rake spec SPEC_OPTS='--format documentation'
+  - bundle exec rake spec
 matrix:
   include:
   - rvm: 2.1.9
@@ -19,8 +19,6 @@ matrix:
   - rvm: 2.2.6
     env: PUPPET_VERSION="~> 4.0"
   - rvm: 2.3.3
-    env: PUPPET_VERSION="~> 4.0"
-  - rvm: 2.4.0
     env: PUPPET_VERSION="~> 4.0"
   - rvm: 2.4.0
     env: PUPPET_VERSION="~> 4.0"
