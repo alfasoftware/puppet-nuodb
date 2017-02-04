@@ -13,6 +13,7 @@ if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
   gem 'rake', '~> 10.0'
   gem 'rspec', '~> 2.0'
 else
+  gem "coveralls", :require => false
   # rubocop requires ruby >= 1.9
   gem 'rubocop'
 end
