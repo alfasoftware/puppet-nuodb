@@ -20,6 +20,7 @@ describe 'nuodb' do
       .that_comes_before('Service[nuoagent]')
 
     is_expected.to contain_class('nuodb')
+    is_expected.to contain_class('nuodb::params')
     is_expected.to contain_anchor('::nuodb::begin').that_comes_before('Class[nuodb::install]')
     is_expected.to contain_class('nuodb::install').that_comes_before('Class[nuodb::config]')
     is_expected.to contain_class('nuodb::config').that_notifies('Class[nuodb::service]')

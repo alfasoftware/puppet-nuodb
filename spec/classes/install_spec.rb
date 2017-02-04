@@ -17,6 +17,11 @@ describe 'nuodb::install' do
     }
   end
 
+  it do
+    is_expected.to contain_class('nuodb')
+    is_expected.to contain_class('nuodb::params')
+  end
+
   context 'install on Debian/Ubuntu' do
     it do
       is_expected.to contain_exec('download_nuodb')

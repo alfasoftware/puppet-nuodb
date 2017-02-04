@@ -1,5 +1,7 @@
 AllCops:
   TargetRubyVersion: 1.9
+  Exclude:
+    - 'sepc/fixtures/**/*'
 Metrics/LineLength:
   Max: 120
 Metrics/BlockLength:

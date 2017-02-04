@@ -12,6 +12,8 @@ describe 'nuodb::config' do
   end
 
   it do
+    is_expected.to contain_class('nuodb')
+    is_expected.to contain_class('nuodb::params')
     is_expected.to contain_class('nuodb::config')
     is_expected.to contain_file('/opt/nuodb/etc/default.properties')
       .with_ensure('present').with_owner('nuodb').with_group('nuodb').with_mode('0600')

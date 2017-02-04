@@ -12,6 +12,8 @@ describe 'nuodb::service' do
   end
 
   it do
+    is_expected.to contain_class('nuodb')
+    is_expected.to contain_class('nuodb::params')
     is_expected.to contain_service('nuoagent')
       .with_ensure('running').with_enable(true).with_hasstatus(true).with_hasrestart(true)
     is_expected.to contain_service('nuorestsvc')
