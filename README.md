@@ -11,15 +11,14 @@ Installs and configures NuoDB database.
 
 * [Java 8 or higher](http://doc.nuodb.com/Latest/Content/System-Requirements.htm) - This module will by default use ``puppetlabs/java`` module to install Java it is requested not manage Java.
 * Disable [Transparent Hugepages](http://doc.nuodb.com/Latest/Content/Note-About-%20Using-Transparent-Huge-Pages.htm) (THP) on Linux - This module will by default use ``alexharvey/disable_transparent_hugepage module`` to install Java it is requested not manage THP.
-* A location to download the binary package from (.deb/.rpm depending on your platform), as there's no public download site for NuoDB.
 
 ## Usage
 
 ### Installation using minimal parameters
 
-This module can install and configure NuoDB with a minimal set of parameters. As there's no public download site for NuoDB, you must provide a ``package_download_url`` from where the required binary distribution of NuoDB can be downloaded.
+This module can install and configure NuoDB with a minimal set of parameters.
 
-In addition to the download URL, it is highly recommened that you at least set your own ``domainPassword`` to make sure your database does not use the default password povided by this module.
+It is highly recommened that you at least set your own ``domainPassword`` to make sure your database does not use the default password (``ch@ngeMe``) povided by this module.
 
 #### Using Hiera
 
@@ -29,22 +28,26 @@ All the configuration data required for this module can be provied by Hiera, so 
 include ::nuodb
 ```
 
-In Hiera, at least the following should be set.
+In Hiera, it is recommened to at least set the following.
 
 ```yaml
-nuodb::package_download_url: 'http://yourdomain.com/path-to-nuodb-binary-dir/'
 nuodb::config_overrides:
   domainPassword: 'mySuperSecretPassword'
 ```
 
 #### Without Hiera
 
-If you are not using Hiera, you can still set the paramters for the module like this.
+If you are not using Hiera, to setup NuoDB with the default parameters, just include the module.
+
+```puppet
+include ::nuodb
+```
+
+Or to set any parameters,
 
 ```puppet
 class { ::nuodb:
-  package_download_url => 'http://yourdomain.com/path-to-nuodb-binary-dir/',
-  config_overrides     => {
+  config_overrides => {
     domainPassword => 'mySuperSecretPassword',
   },
 }
@@ -54,11 +57,10 @@ class { ::nuodb:
 
 ```puppet
 class { ::nuodb:
-  package_download_url => 'http://yourdomain.com/path-to-nuodb-binary-dir/',
-  config_overrides     => {
+  config_overrides => {
     domainPassword => 'mySuperSecretPassword',
   },
-  manage_java          => false,
+  manage_java      => false,
 }
 ```
 
@@ -70,8 +72,7 @@ For example, to set the ``ipAddressOfExistingMachineToConnectTo`` propoerty in t
 
 ```puppet
 class { ::nuodb:
-  package_download_url => 'http://yourdomain.com/path-to-nuodb-binary-dir/',
-  config_overrides     => {
+  config_overrides => {
     domainPassword                        => 'mySuperSecretPassword',
     ipAddressOfExistingMachineToConnectTo => '192.168.1.20',
   },
@@ -84,8 +85,7 @@ To prevent using the provided default values for the default.properties file, re
 
 ```puppet
 class { ::nuodb:
-  package_download_url => 'http://yourdomain.com/path-to-nuodb-binary-dir/',
-  config_defaults      => {
+  config_defaults => {
     domainPassword                        => 'mySuperSecretPassword',
     ipAddressOfExistingMachineToConnectTo => '192.168.1.20',
   },
@@ -120,6 +120,9 @@ class { ::nuodb:
 
 * `manage_thp`
   Boolean specifying whether or not to manage Transparent Hugepages (THP). Defaults to true.
+
+* `manage_wget`
+  Boolean specifying whether or not to manage wget. Defaults to true.
 
 * `config_overrides`
   Hash of properties to set in default.properties file, which will override any properties set via config_defaults parameter. It is recommended to set the domainPassword parameter either in overrides or defaults.

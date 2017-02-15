@@ -14,7 +14,8 @@ class nuodb::params {
   }
 
   $manage_java = true
-  $manage_thp = true
+  $manage_thp  = true
+  $manage_wget = true
   $nuodb_home  = '/opt/nuodb'
 
   $config_overrides = { }

@@ -24,6 +24,8 @@ describe 'nuodb::install' do
 
   context 'install on Debian/Ubuntu' do
     it do
+      is_expected.to contain_package('wget')
+        .that_comes_before('Exec[download_nuodb]')
       is_expected.to contain_exec('download_nuodb')
         .with_command('/usr/bin/wget -q -O /tmp/nuodb-ce_2.6.0.4_amd64.deb http://yourdomain.com/nuodb/nuodb-ce_2.6.0.4_amd64.deb')
         .with_creates('/tmp/nuodb-ce_2.6.0.4_amd64.deb')

@@ -11,6 +11,7 @@
 # @param package_provider provider to use when installing the package. Defaults to rpm on RedHat OS family and dpkg on Debian OS family.
 # @param manage_java Boolean specifying whether or not to manage install Java. Defaults to true.
 # @param manage_thp Boolean specifying whether or not to manage Transparent Hugepages (THP). Defaults to true.
+# @param manage_wget Boolean specifying whether or not to manage wget. Defaults to true.
 # @param config_overrides Hash of properties to set in default.properties file, which will override any properties set via config_defaults
 #   parameter. It is recommended to set the domainPassword parameter either in overrides or defaults.
 # @param config_defaults Hash of properties to set in default.properties by default unless overridden by config_overrides parameter.
@@ -44,6 +45,7 @@ class nuodb (
   $package_provider          = $::nuodb::params::package_provider,
   $manage_java               = $::nuodb::params::manage_java,
   $manage_thp                = $::nuodb::params::manage_thp,
+  $manage_wget               = $::nuodb::params::manage_wget,
   $config_overrides          = $::nuodb::params::config_overrides,
   $config_defaults           = $::nuodb::params::config_defaults,
   $agent_service_ensure      = $::nuodb::params::agent_service_ensure,
@@ -61,6 +63,7 @@ class nuodb (
 
   validate_bool($manage_package)
   validate_bool($manage_java)
+  validate_bool($manage_wget)
   validate_string($config_overrides['domainPassword'], 'domainPassword must be set')
 
   # Use puppetlabs-java module to install Java

@@ -3,12 +3,13 @@
 # This class manages NuoDB package installation.
 #
 class nuodb::install (
-  $package_ensure = $::nuodb::package_ensure,
-  $package_version = $::nuodb::package_version,
-  $package_provider = $::nuodb::package_provider,
+  $package_ensure       = $::nuodb::package_ensure,
+  $package_version      = $::nuodb::package_version,
+  $package_provider     = $::nuodb::package_provider,
   $package_download_url = $::nuodb::package_download_url,
-  $package_alt_name = $::nuodb::package_alt_name,
-  $package_alt_source = $::nuodb::package_alt_source,
+  $package_alt_name     = $::nuodb::package_alt_name,
+  $package_alt_source   = $::nuodb::package_alt_source,
+  $manage_wget          = $::nuodb::manage_wget,
 ) inherits nuodb {
 
   # Determine the package name
@@ -29,6 +30,17 @@ class nuodb::install (
 
   # Download and install the package
   if ($package_alt_source == undef) {
+
+    # Install wget
+    if ($manage_wget) {
+      package { 'wget':
+        ensure => 'installed',
+      }
+
+      # wget should be installed for downloading nuodb installtion
+      Package['wget'] -> Exec['download_nuodb']
+    }
+
     exec { 'download_nuodb':
       command => "/usr/bin/wget -q -O /tmp/${package_name} ${package_download_url}/${package_name}",
       creates => "/tmp/${package_name}",
