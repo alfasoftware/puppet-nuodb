@@ -161,5 +161,4 @@ This module has only been tested on,
 
 ## Development
 
-To contribute please send a pull request against
-Please feel free to raise feature requests, improvements, report bugs and send pull requests.
+To contribute, please feel free to raise feature requests, suggest improvements, report bugs and send pull requests.
