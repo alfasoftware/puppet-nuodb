@@ -1,3 +1,8 @@
-/.bundle
-/Gemfile.lock
-/Gemfile.local
+.bundle
+.vendor
+Gemfile.lock
+Gemfile.local
+pkg
+spec/fixtures/manifests/
+spec/fixtures/modules/
+vendor
