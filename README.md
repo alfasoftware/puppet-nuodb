@@ -9,8 +9,8 @@ Installs and configures NuoDB database.
 
 ## Requirements
 
-* [Java 8 or higher](http://doc.nuodb.com/Latest/Content/System-Requirements.htm) - This module will by default use ``puppetlabs/java`` module to install Java it is requested not manage Java.
-* Disable [Transparent Hugepages](http://doc.nuodb.com/Latest/Content/Note-About-%20Using-Transparent-Huge-Pages.htm) (THP) on Linux - This module will by default use ``alexharvey/disable_transparent_hugepage module`` to install Java it is requested not manage THP.
+* [Java 8 or higher](http://doc.nuodb.com/Latest/Content/System-Requirements.htm) - This module will by default use puppetlabs/java module to install Java it is requested not manage Java.
+* Disable [Transparent Hugepages](http://doc.nuodb.com/Latest/Content/Note-About-%20Using-Transparent-Huge-Pages.htm) (THP) on Linux - This module will by default use alexharvey/disable_transparent_hugepage module to install Java it is requested not manage THP.
 
 ## Usage
 
@@ -46,6 +46,22 @@ include ::nuodb
 Or to set any parameters,
 
 ```puppet
+class { ::nuodb:
+  config_overrides => {
+    domainPassword => 'mySuperSecretPassword',
+  },
+}
+```
+
+### Installing on RedHat/CentOS 7
+
+There is a [known issue](https://github.com/alexharv074/puppet-disable_transparent_hugepage#known-issues) in disabling THP on RedHat/CentOS unless the service_provider is specified when including the alexharv074/puppet-disable_transparent_hugepage module.
+
+```puppet
+class { ::disable_transparent_hugepage:
+  service_provider => 'redhat',
+}
+
 class { ::nuodb:
   config_overrides => {
     domainPassword => 'mySuperSecretPassword',
@@ -163,4 +179,4 @@ This module has only been tested on,
 
 ## Development
 
-To contribute, please feel free to raise feature requests, suggest improvements, report bugs and send pull requests.
+Please feel free to raise feature requests, suggest improvements, report bugs and send pull requests.
