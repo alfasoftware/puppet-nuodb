@@ -104,7 +104,7 @@ class { ::nuodb:
   Version of the package to install.
 
 * `package_download_url`
-  Location to download the package from. This *must* be set unless a package source is provided.
+  Location to download the package from.
 
 * `package_alt_source`
   Alternative location to get the package from. Will disregard the package_download_url if this is set.
@@ -181,7 +181,6 @@ This module has only been tested on,
 
 * RedHat/CentOS 7
 * Ubuntu 16.04 (xenial)
-* Debian 7 (jessie)
 
 ## Development
 

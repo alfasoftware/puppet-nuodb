@@ -7,6 +7,7 @@ class nuodb::params {
   $manage_package = true
   $package_ensure = 'installed'
   $package_version = '2.6.0.4'
+  $package_download_url = 'http://download.nuohub.org'
   $package_provider = $::os['family'] ? {
     /RedHat/ => 'rpm',
     default  => 'dpkg',

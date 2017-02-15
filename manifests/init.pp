@@ -5,7 +5,7 @@
 # @param manage_package Boolean specifying whether or not to manage the package. Defaults to true.
 # @param package_ensure the ensure value to be set for the package resource when installing the package. Defaults to installed.
 # @param package_version version of the package to install.
-# @param package_download_url location to download the package from. This *must* be set unless a package source is provided.
+# @param package_download_url location to download the package from.
 # @param package_alt_source alternative location to get the package from. Will disregard the package_download_url if this is set.
 # @param package_alt_name alternative package file name if the file names doesn't follow the standard distribution naming.
 # @param package_provider provider to use when installing the package. Defaults to rpm on RedHat OS family and dpkg on Debian OS family.
@@ -25,11 +25,10 @@
 # @param webconsole_service_enable Boolean enable parameter for the service resource to manage the web console service. Defaults to true.
 #
 # @example
-#   include ::nuodb # Use hiera to set 'package_download_url' and the 'domainPassword' in config_overrides
+#   include ::nuodb # Use hiera to set parameters such as the 'domainPassword' in config_overrides
 #
 # @example
 #   class { '::nuodb' :
-#     package_download_url => 'http://yourdomain.com/path-to-nuodb-binary-dir/',
 #     config_overrides     => {
 #       domainPassword => 'mySuperSecretPassword',
 #     },
@@ -39,7 +38,7 @@ class nuodb (
   $manage_package            = $::nuodb::params::manage_package,
   $package_ensure            = $::nuodb::params::package_ensure,
   $package_version           = $::nuodb::params::package_version,
-  $package_download_url      = undef,
+  $package_download_url      = $::nuodb::params::package_download_url,
   $package_alt_source        = undef,
   $package_alt_name          = undef,
   $package_provider          = $::nuodb::params::package_provider,
