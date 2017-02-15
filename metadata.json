@@ -7,6 +7,10 @@
   "source": "https://github.com/alfasystems/puppet-nuodb",
   "project_page": "https://github.com/alfasystems/puppet-nuodb",
   "issues_url": "https://github.com/alfasystems/puppet-nuodb/issues",
+  "tags": [
+    "nuodb",
+    "database"
+  ],
   "dependencies": [
   	{ "name": "puppetlabs-stdlib", "version_requirement":">= 3.0.0" },
     { "name": "puppetlabs-java", "version_requirement":">= 1.2.0" },
