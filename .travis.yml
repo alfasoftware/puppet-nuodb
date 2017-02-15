@@ -13,16 +13,16 @@ script:
 matrix:
   fast_finish: true
   include:
-  - rvm: 2.1.9
-    env: PUPPET_VERSION="~> 4.0" CHECK=test
-  - rvm: 2.2.6
-    env: PUPPET_VERSION="~> 4.0" CHECK=test
-  - rvm: 2.3.3
-    env: PUPPET_VERSION="~> 4.0" CHECK=test
-  - rvm: 2.4.0
-    env: PUPPET_VERSION="~> 4.0" CHECK=test DEPLOY_TO_FORGE=yes
-  - rvm: 2.4.0
-    env: PUPPET_VERSION="~> 4.0" CHECK=rubocop
+    - rvm: 2.1.9
+      env: PUPPET_VERSION="~> 4.0" CHECK=test
+    - rvm: 2.2.6
+      env: PUPPET_VERSION="~> 4.0" CHECK=test
+    - rvm: 2.3.3
+      env: PUPPET_VERSION="~> 4.0" CHECK=test
+    - rvm: 2.4.0
+      env: PUPPET_VERSION="~> 4.0" CHECK=test DEPLOY_TO_FORGE=yes
+    - rvm: 2.4.0
+      env: PUPPET_VERSION="~> 4.0" CHECK=rubocop
 notifications:
   email: false
 deploy:
@@ -34,5 +34,7 @@ deploy:
     tags: true
     # all_branches is required to use tags
     all_branches: true
-    # Only publish the build marked with "DEPLOY_TO_FORGE"
-    condition: "$DEPLOY_TO_FORGE = yes"
+    # Only publish the build marked with "DEPLOY_TO_FORGE" and "DEPLOY_ALLOWED" via Travis settings
+    condition:
+      - "$DEPLOY_ALLOWED = yes"
+      - "$DEPLOY_TO_FORGE = yes"
