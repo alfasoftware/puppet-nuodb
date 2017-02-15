@@ -20,8 +20,19 @@ matrix:
   - rvm: 2.3.3
     env: PUPPET_VERSION="~> 4.0" CHECK=test
   - rvm: 2.4.0
-    env: PUPPET_VERSION="~> 4.0" CHECK=test
+    env: PUPPET_VERSION="~> 4.0" CHECK=test DEPLOY_TO_FORGE=yes
   - rvm: 2.4.0
     env: PUPPET_VERSION="~> 4.0" CHECK=rubocop
 notifications:
   email: false
+deploy:
+  provider: puppetforge
+  user: alfasystems
+  password:
+    secure: gs7gNWU+xgJ488A5ixWeTnLNSr3Efsu/qFEhgpPu78/7IbBN3j2HqcU7yXAxaUrDem6VDvBMLCaW0pFC/hfgiGqkYqe1xsMbP0wqGAwX0Tqk683rdc7Lf4MyUFjSOnpzs9cNC+7wD+uv1XOf//XVC4SE5yngPUSizRkYooT1fp7aS6raoSTbAXrMy7K6sAuGukUhPGQhOEHhgHUpkC51pRNJ1/bNhTmnoeZB6LIFAWgSNq+vDZmKsb1kycXPzdOIDoZeDTGFwEYugO6Ie4+9AUAcXbSh1KnwCvAtoqU674e+MfSprDWOePG0Epw7sVfqpRpmns631dcWXBAKvTSXJByK7xKK4GCP8JUT6+UvXb84F3qRux/TG1pkTrQEn6Wx5d1JQ1wbtMyX/kFQrTEEmQzeZSKWIe/6MF9hgSwpZYdywPE7HLg3uqoxlbXb97R8WIZ+6KT0+u7Onfgrox9qGGo3tFPxr81RbARx7tjRMe++WWiVz9bsOBuJD3kSD/9VwaKs/SkvPBGTKQth4f3+NMRowRunRKtvxRDx0BPooqmicdZt0FhQY7za7s96rlod/PdOfg4e9baLHqf7SlIsOnkOrJyRLkc1WAsnyjSajOOnuTcSZgIvCe+c5eupB4BP4FSzD6ZEihTmKKCZ6723aLg5iSs/2acU1TY5P2aFwhI=
+  on:
+    tags: true
+    # all_branches is required to use tags
+    all_branches: true
+    # Only publish the build marked with "DEPLOY_TO_FORGE"
+    condition: "$DEPLOY_TO_FORGE = yes"
