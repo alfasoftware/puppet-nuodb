@@ -151,30 +151,6 @@ class { ::nuodb:
 * `webconsole_service_enable`
   Boolean enable parameter for the service resource to manage the web console service. Defaults to true.
 
-#### `version`
-Which version of Crucible to install (default: 4.0.3)
-#### `service_manage`
-Should puppet manage the init service? (default: true)
-#### `service_ensure`
-State the service should be (default: running, valid options: running, stopped)
-#### `service_enable`
-Should the service be enabled on boot? (default: true)
-#### `service_name`
-Name of the service (default: crucible)
-#### `install_java`
-Should the module install Java? (default: true)
-#### `install_dir`
-Where should crucible be installed? (default: '/opt/crucible')
-#### `fisheye_inst`
-Where should crucible's data be stored? (default: '/opt/crucible-data')
-#### `service_user`
-What user should the service run under? (default: crucible)
-#### `install_unzip`
-Should the module install unzip? (default: true)
-#### `install_wget`
-Should the module install wget? (default: true)
-
-
 ## Limitations
 
 This module has only been tested on,
@@ -184,5 +160,4 @@ This module has only been tested on,
 
 ## Development
 
-To contribute please send a pull request against
-Please feel free to raise feature requests, improvements, report bugs and send pull requests.
+To contribute, please feel free to raise feature requests, suggest improvements, report bugs and send pull requests.
