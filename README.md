@@ -20,7 +20,23 @@ This module can install and configure NuoDB with a minimal set of parameters.
 
 It is highly recommened that you at least set your own ``domainPassword`` to make sure your database does not use the default password (``ch@ngeMe``) povided by this module.
 
-#### Using Hiera
+If you are not using Hiera, to setup NuoDB with the default parameters, just include the module.
+
+```puppet
+include ::nuodb
+```
+
+Or to set any parameters as follows.
+
+```puppet
+class { ::nuodb:
+  config_overrides => {
+    domainPassword => 'mySuperSecretPassword',
+  },
+}
+```
+
+#### With Hiera
 
 All the configuration data required for this module can be provied by Hiera, so just including the module should suffice in the in the Puppet code.
 
@@ -33,24 +49,6 @@ In Hiera, it is recommened to at least set the following.
 ```yaml
 nuodb::config_overrides:
   domainPassword: 'mySuperSecretPassword'
-```
-
-#### Without Hiera
-
-If you are not using Hiera, to setup NuoDB with the default parameters, just include the module.
-
-```puppet
-include ::nuodb
-```
-
-Or to set any parameters,
-
-```puppet
-class { ::nuodb:
-  config_overrides => {
-    domainPassword => 'mySuperSecretPassword',
-  },
-}
 ```
 
 ### Installing on RedHat/CentOS 7
@@ -69,15 +67,37 @@ class { ::nuodb:
 }
 ```
 
+#### With Hiera
+
+```puppet
+include ::disable_transparent_hugepage:
+
+include ::nuodb
+```
+
+```yaml
+disable_transparent_hugepage::service_provider: redhat
+
+nuodb::config_overrides:
+  domainPassword: mySuperSecretPassword
+```
+
 ### Install NuoDB without installing Java, if Java is already installed
 
 ```puppet
 class { ::nuodb:
-  config_overrides => {
-    domainPassword => 'mySuperSecretPassword',
-  },
   manage_java      => false,
 }
+```
+
+#### With Hiera
+
+```puppet
+include ::nuodb
+```
+
+```yaml
+nuodb::manage_java: false
 ```
 
 ### Setting properties in default.properties file
@@ -95,6 +115,18 @@ class { ::nuodb:
 }
 ```
 
+#### With Hiera
+
+```puppet
+include ::nuodb
+```
+
+```yaml
+nuodb::config_overrides:
+  domainPassword: mySuperSecretPassword
+  ipAddressOfExistingMachineToConnectTo: 192.168.1.20
+```
+
 ### To not use any default values provided by this module for the default.properties file
 
 To prevent using the provided default values for the default.properties file, redefine the ``config_defaults`` hash instead of using ``config_overrides``.
@@ -102,11 +134,77 @@ To prevent using the provided default values for the default.properties file, re
 ```puppet
 class { ::nuodb:
   config_defaults => {
-    domainPassword                        => 'mySuperSecretPassword',
-    ipAddressOfExistingMachineToConnectTo => '192.168.1.20',
+    domainPassword => 'mySuperSecretPassword',
   },
 }
 ```
+
+#### With Hiera
+
+```puppet
+include ::nuodb
+```
+
+```yaml
+nuodb::config_defaults:
+  domainPassword: mySuperSecretPassword
+```
+
+### Creating a domain administrator
+
+```puppet
+class { ::nuodb:
+  domain_administrators => {
+    'domainadmin1' => {
+      ensure => present,
+      password => 'secretpassword',
+    }
+  }
+}
+```
+
+#### With Hiera
+
+```puppet
+include ::nuodb
+```
+
+```yaml
+nuodb::domain_administrators:
+  domainadmin1:
+    ensure: present
+    password: secretpassword
+```
+
+### Creating a database
+
+```puppet
+class { ::nuodb:
+  databases => {
+    'testdb1' => {
+      ensure       => present,
+      template     => 'Multi Host',
+      dba_username => 'dba1'
+      dba_password => 'secret1',
+    }
+  }
+}
+```
+
+#### With Hiera
+
+```puppet
+include ::nuodb
+```
+
+```yaml
+nuodb::databases:
+  testdb1:
+    ensure: present
+    template: Multi Host
+    dba_username: dba1
+    dba_password: secret1
+````
 
 ## Module Parameters
 
@@ -169,6 +267,52 @@ class { ::nuodb:
 
 * `webconsole_service_enable`
   Boolean enable parameter for the service resource to manage the web console service. Defaults to true.
+
+## nuodb::manager::database Parameters
+
+* `ensure`
+  The ensure value to determine if the database should be present or absent. Defaults to present.
+
+* `nuodb_home`
+  The directory where NuoDB is installed to. Defaults to the install location from the module.
+
+* `broker_host`
+  The host name for the broker instance to connect to create the database. Defaults to the `altAddr` property set for the default.properties in the module parameters.
+
+* `domain_password`
+  Domain password to use for authenticating with the broker. Defaults to the `domainPassword` property set for the default.properties in the module parameters.
+
+* `database_name`
+  Name of the database to create. Defaults to the title.
+
+* `template`
+  The database template to use, must be one of 'Single Host', 'Minimally Redundant', 'Multi Host' or 'Region distributed'. Defaults to 'Single Host'.
+
+* `dba_username`
+  Database administrator username for the database. Defaults to the title.
+
+* `dba_password`
+  Database administrator password for the database. Defaults to the title.
+
+## nuodb::manager::domain_administrator Parameters
+
+* `ensure`
+  The ensure value to determine if the domain administrator should be present or absent. Defaults to present.
+
+* `nuodb_home`
+  The directory where NuoDB is installed to. Defaults to the install location from the module.
+
+* `broker_host`
+  The host name for the broker instance to connect to create the domain administrator. Defaults to the 'altAddr' property set for the default.properties in the module parameters.
+
+* `domain_password`
+  Domain password to use for authenticating with the broker. Defaults to the 'domainPassword' property set for the default.properties in the module parameters.
+
+* `username`
+  Domain administrator username for the domain. Defaults to the title.
+
+* `password`
+  Domain administrator password for the domain. Defaults to the title.
 
 ## Limitations
 

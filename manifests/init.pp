@@ -56,6 +56,8 @@ class nuodb (
   $engine_service_enable     = $::nuodb::params::engine_service_enable,
   $webconsole_service_ensure = $::nuodb::params::webconsole_service_ensure,
   $webconsole_service_enable = $::nuodb::params::webconsole_service_enable,
+  $domain_administrators     = {},
+  $databases                 = {},
 ) inherits ::nuodb::params {
 
   # Merge defaults and overrides
@@ -97,4 +99,8 @@ class nuodb (
     Class['::nuodb::config']  ~>
     Class['::nuodb::service'] ->
   Anchor['::nuodb::end']
+
+  # Resources
+  create_resources('nuodb::manager::domain_administrator', $domain_administrators)
+  create_resources('nuodb::manager::database', $databases)
 }
