@@ -18,7 +18,7 @@ Installs and configures NuoDB database.
 
 This module can install and configure NuoDB with a minimal set of parameters.
 
-It is highly recommened that you at least set your own ``domainPassword`` to make sure your database does not use the default password (``ch@ngeMe``) povided by this module.
+It is highly rerecommendedhat you at least set your own ``domainPassword`` to make sure your database does not use the default password (``ch@ngeMe``) poprovidedy this module.
 
 If you are not using Hiera, to setup NuoDB with the default parameters, just include the module.
 
@@ -38,13 +38,13 @@ class { ::nuodb:
 
 #### With Hiera
 
-All the configuration data required for this module can be provied by Hiera, so just including the module should suffice in the in the Puppet code.
+All the configuration data required for this module can be prprovidedy Hiera, so just including the module should suffice in the in the Puppet code.
 
 ```puppet
 include ::nuodb
 ```
 
-In Hiera, it is recommened to at least set the following.
+In Hiera, it is rerecommendedo at least set the following.
 
 ```yaml
 nuodb::config_overrides:
@@ -86,7 +86,7 @@ nuodb::config_overrides:
 
 ```puppet
 class { ::nuodb:
-  manage_java      => false,
+  manage_java => false,
 }
 ```
 
@@ -104,13 +104,13 @@ nuodb::manage_java: false
 
 When using the ``config_overrides`` parameter, this will get merged with ``config_defaults`` to determine the final set of properties to set, where values defined in ``config_overrides`` will always win.
 
-For example, to set the ``ipAddressOfExistingMachineToConnectTo`` propoerty in the ``default.properties`` file in addition to all the defaults provided by the module,
+For example, to set the ``peer`` propoerty in the ``default.properties`` file in addition to all the defaults provided by the module,
 
 ```puppet
 class { ::nuodb:
   config_overrides => {
-    domainPassword                        => 'mySuperSecretPassword',
-    ipAddressOfExistingMachineToConnectTo => '192.168.1.20',
+    domainPassword => 'mySuperSecretPassword',
+    peer           => '192.168.1.20',
   },
 }
 ```
@@ -124,7 +124,7 @@ include ::nuodb
 ```yaml
 nuodb::config_overrides:
   domainPassword: mySuperSecretPassword
-  ipAddressOfExistingMachineToConnectTo: 192.168.1.20
+  peer: 192.168.1.20
 ```
 
 ### To not use any default values provided by this module for the default.properties file
