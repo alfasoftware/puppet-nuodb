@@ -134,7 +134,7 @@ To prevent using the provided default values for the default.properties file, re
 ```puppet
 class { ::nuodb:
   config_defaults => {
-    domainPassword => 'mySuperSecretPassword',
+    domainPassword => 'superSecretDomainPassword',
   },
 }
 ```
@@ -147,7 +147,7 @@ include ::nuodb
 
 ```yaml
 nuodb::config_defaults:
-  domainPassword: mySuperSecretPassword
+  domainPassword: superSecretDomainPassword
 ```
 
 ### Creating a domain administrator
@@ -156,10 +156,10 @@ nuodb::config_defaults:
 class { ::nuodb:
   domain_administrators => {
     'domainadmin1' => {
-      ensure => present,
-      password => 'secretpassword',
-    }
-  }
+      ensure   => present,
+      password => 'domainadmin1password,
+    },
+  },
 }
 ```
 
@@ -173,7 +173,7 @@ include ::nuodb
 nuodb::domain_administrators:
   domainadmin1:
     ensure: present
-    password: secretpassword
+    password: domainadminpassword1
 ```
 
 ### Creating a database
@@ -184,10 +184,10 @@ class { ::nuodb:
     'testdb1' => {
       ensure       => present,
       template     => 'Multi Host',
-      dba_username => 'dba1'
+      dba_username => 'dba1',
       dba_password => 'secret1',
-    }
-  }
+    },
+  },
 }
 ```
 
