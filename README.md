@@ -18,7 +18,7 @@ Installs and configures NuoDB database.
 
 This module can install and configure NuoDB with a minimal set of parameters.
 
-It is highly rerecommendedhat you at least set your own ``domainPassword`` to make sure your database does not use the default password (``ch@ngeMe``) poprovidedy this module.
+It is highly recommended that you at least set your own ``domainPassword`` to make sure your database does not use the default password (``ch@ngeMe``) providedy this module.
 
 If you are not using Hiera, to setup NuoDB with the default parameters, just include the module.
 
@@ -157,7 +157,7 @@ class { ::nuodb:
   domain_administrators => {
     'domainadmin1' => {
       ensure   => present,
-      password => 'domainadmin1password,
+      password => 'domainadmin1password',
     },
   },
 }
