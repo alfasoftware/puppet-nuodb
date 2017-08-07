@@ -18,21 +18,21 @@ class nuodb::service (
     enable     => $agent_service_enable,
     hasstatus  => true,
     hasrestart => true,
-  } ->
+  }
 
   service { 'nuorestsvc':
     ensure     => $rest_service_ensure,
     enable     => $rest_service_enable,
     hasstatus  => true,
     hasrestart => true,
-  } ->
+  }
 
   service { 'nuoengine':
     ensure     => $engine_service_ensure,
     enable     => $engine_service_enable,
     hasstatus  => true,
     hasrestart => true,
-  } ->
+  }
 
   service { 'nuowebconsole':
     ensure     => $webconsole_service_ensure,
@@ -40,4 +40,9 @@ class nuodb::service (
     hasstatus  => true,
     hasrestart => true,
   }
+
+  Service['nuoagent']
+  -> Service['nuorestsvc']
+  -> Service['nuoengine']
+  -> Service['nuowebconsole']
 }

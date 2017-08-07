@@ -62,8 +62,8 @@ define nuodb::manager::database (
     exec { "shutdown-database-${database_name}" :
       command => "${base_command} \"shutdown database '${database_name}'\"",
       onlyif  => $exists_check,
-    } ->
-    exec { "delete-database-${database_name}" :
+    }
+    -> exec { "delete-database-${database_name}" :
       command => "${base_command} \"delete database '${database_name}'\"",
       onlyif  => $exists_check,
     }

@@ -94,11 +94,11 @@ class nuodb (
   include '::nuodb::service'
 
   # Ordering
-  Anchor['::nuodb::begin'] ->
-    Class['::nuodb::install'] ->
-    Class['::nuodb::config']  ~>
-    Class['::nuodb::service'] ->
-  Anchor['::nuodb::end']
+  Anchor['::nuodb::begin']
+  -> Class['::nuodb::install']
+  -> Class['::nuodb::config']
+  ~> Class['::nuodb::service']
+  -> Anchor['::nuodb::end']
 
   # Resources
   create_resources('nuodb::manager::domain_administrator', $domain_administrators)

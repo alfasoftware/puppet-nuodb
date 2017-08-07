@@ -1,12 +1,12 @@
 {
   "name": "alfasystems-nuodb",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "alfasystems",
   "summary": "Installs, configures and manages NuoDB service.",
   "license": "Apache-2.0",
-  "source": "https://github.com/alfasystems/puppet-nuodb",
-  "project_page": "https://github.com/alfasystems/puppet-nuodb",
-  "issues_url": "https://github.com/alfasystems/puppet-nuodb/issues",
+  "source": "https://github.com/alfasoftware/puppet-nuodb",
+  "project_page": "https://github.com/alfasoftware/puppet-nuodb",
+  "issues_url": "https://github.com/alfasoftware/puppet-nuodb/issues",
   "tags": [
     "nuodb",
     "database"
