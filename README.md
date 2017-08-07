@@ -1,6 +1,6 @@
 # NuoDB module for Puppet
 
-[![Build Status](https://travis-ci.org/alfasystems/puppet-nuodb.svg?branch=master)](https://travis-ci.org/alfasystems/puppet-nuodb)
+[![Build Status](https://travis-ci.org/alfasoftware/puppet-nuodb.svg?branch=master)](https://travis-ci.org/alfasoftware/puppet-nuodb)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/alfasystems/nuodb.svg)](https://forge.puppetlabs.com/alfasystems/nuodb)
 
 ## Overview
