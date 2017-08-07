@@ -1,6 +1,6 @@
 {
   "name": "alfasystems-nuodb",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "author": "alfasystems",
   "summary": "Installs, configures and manages NuoDB service.",
   "license": "Apache-2.0",
