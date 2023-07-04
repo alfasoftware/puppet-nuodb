@@ -3,6 +3,13 @@
 [![Build Status](https://travis-ci.org/alfasoftware/puppet-nuodb.svg?branch=master)](https://travis-ci.org/alfasoftware/puppet-nuodb)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/alfasystems/nuodb.svg)](https://forge.puppetlabs.com/alfasystems/nuodb)
 
+## Archived
+
+This has not been in active use in use since 2017.
+
+----
+
+
 ## Overview
 
 Installs and configures NuoDB database.
